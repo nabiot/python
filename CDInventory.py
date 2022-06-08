@@ -53,14 +53,12 @@ class FileProcessor:
             None.
         """
         table.clear()  # this clears existing data and allows to load data from file
-        try:
-            with open(file_name, 'r') as objFile:
-                for line in objFile:
-                    data = line.strip().split(',')
-                    dicRow = {'ID': int(data[0]), 'Title': data[1], 'Artist': data[2]}
-                    table.append(dicRow)
-        except FileNotFoundError:
-            print("File not found. please enter file.")
+        objFile = open(file_name, 'r')
+        for line in objFile:
+            data = line.strip().split(',')
+            dicRow = {'ID': int(data[0]), 'Title': data[1], 'Artist': data[2]}
+            table.append(dicRow)
+        objFile.close()
 
     @staticmethod
     def write_file(file_name, table):
